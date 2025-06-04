@@ -27,13 +27,7 @@ class MCPClient {
   }
 
   async connectToServer(serverScriptPath: string) {
-    /**
-     * Connect to an MCP server
-     *
-     * @param serverScriptPath - Path to the server script (.py or .js)
-     */
     try {
-      // Determine script type and appropriate command
       const isJs = serverScriptPath.endsWith(".js");
       const isPy = serverScriptPath.endsWith(".py");
       if (!isJs && !isPy) {
@@ -45,7 +39,6 @@ class MCPClient {
           : "python3"
         : process.execPath;
 
-      // Initialize transport and connect to server
       this.transport = new StdioClientTransport({
         command,
         args: [serverScriptPath],
